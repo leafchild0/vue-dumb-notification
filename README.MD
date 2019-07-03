@@ -1,5 +1,5 @@
 # Dumb notifications with Vue.js
-It's a super simple plugin to show notifications using Vue. It has no build and can be used in a browser. It's ES5 friendly. Inspired from [this](https://github.com/euvl/vue-notification) nitifcation library.
+It's a super simple plugin to show notifications using Vue. It has no build and can be used in a browser. It's ES5 friendly. Inspired from [this](https://github.com/euvl/vue-notification) notifcation library.
 
 ## How to use it
 Just add JS and CSS into your html. Feel free to tweak styling. Plugin has a support for a certain properties:
