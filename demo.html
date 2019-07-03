@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=1024, initial-scale=1.0">
+	<title>Notifications demo</title>
+
+	<script src="https://unpkg.com/vue"></script>
+	<link rel="stylesheet" href="notification.css">
+  <style>
+	  html, body { 
+		  width: 100%;
+		  height: 100%;
+		  margin: 0;
+	  }
+	  .test {
+		display: flex;
+    	justify-content: center;
+	  }
+	  button, select {
+		  font-size: 14px;
+	  }
+  </style>
+</head>
+<body>
+	<!-- For demo, just en example -->
+	<div class="test" id="test">
+		<button @click="showNotif">Usual tooltip</button>
+		<button @click="showNotifWithTitle">Tooltip with title</button>
+		<select v-model="type">
+			<option value="">default</option>
+			<option value="warn">warn</option>
+			<option value="error">error</option>
+			<option value="success">success</option>
+		</select>
+		<notification></notification>
+	</div>
+
+<script type="text/x-template" id="notif-template">
+	<div class="vue-notification-group" :style="styles">
+  <component :is="componentName" :name="animationName" @after-leave="clean">
+    <div v-for="item in active" class="vue-notification-wrapper"
+      :style="notifyWrapperStyle(item)" :key="item.id" :data-id="item.id" >
+      <slot name="body" :class="[classes, item.type]" :item="item" :close="() => destroy(item)" >
+        <!-- Default slot template -->
+        <div :class="notifyClass(item)" @click="destroyIfNecessary(item)">
+			<div class="notification-wrapper">
+				<div v-if="item.title" class="notification-title" v-html="item.title">
+				</div>
+				<div class="notification-content" v-html="item.text">
+				</div>
+			</div>
+		  <div class="close-button" @click="destroy(item)">X</div>
+        </div>
+      </slot>
+    </div>
+  </component>
+</div>
+</script>
+
+<script type="text/javascript" src="notification.js"></script>
+
+<script>
+		var app = new Vue({
+			el: '#test',
+			data: {
+				type: ''
+			},
+			methods: {
+				showNotif: function() {
+					this.$root.$emit('add', {
+						type: this.type,
+						text: 'You patient was been deleted'
+					});
+				},
+				showNotifWithTitle: function() {
+					this.$root.$emit('add', {
+						type: this.type,
+						title: 'Important message',
+						text: 'Hello user! This is a notification! It supports <i>HTML</i>'
+					});
+				}
+			},
+		});
+		</script>
+</body>
+</html>
