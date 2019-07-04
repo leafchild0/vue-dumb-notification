@@ -1,6 +1,6 @@
 var directions = {
   x: ['left', 'center', 'right'],
-  y: ['top', 'bottom'],
+  y: ['top', 'bottom']
 };
 
 var defaults = {
@@ -21,7 +21,7 @@ function listToDirection(value) {
   if (typeof value === 'string') {
     value = split(value);
   }
-  var x, y = null;
+  var x = null, y = null;
 
   value.forEach(function (v) {
     if (directions.y.indexOf(v) !== -1) {
@@ -148,7 +148,7 @@ Vue.component('Notification', {
       var suffix = 'px';
 
       var styles = {
-        width: width + suffix,
+        width: width + suffix
       };
 
       styles[direction.y] = '0px';
@@ -168,7 +168,7 @@ Vue.component('Notification', {
     },
     botToTop: function () {
       return this.styles.hasOwnProperty('bottom');
-    },
+    }
   },
   methods: {
     destroyIfNecessary: function (item) {

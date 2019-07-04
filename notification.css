@@ -39,9 +39,7 @@
     white-space: pre-wrap;
     word-wrap: break-word;
     line-height: 1.3;
-    /* padding: 0 20px; */
-  
-	color: white;
+
 	border-left: 8px solid #0095f1;
 
 	display: flex;
