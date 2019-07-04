@@ -123,7 +123,23 @@ Vue.component('Notification', {
     };
   },
   mounted: function () {
-    this.$root.$on('add', this.addItem);
+    this.$root.$on('notif', this.addItem);
+  },
+  created: function() {
+        var notify = function(params) {
+          if (typeof params === 'string') {
+            params = { title: '', text: params };
+          }
+    
+          if (typeof params === 'object') {
+            this.$root.$emit('notif', params);
+          }
+        };
+    
+        var name = 'notify';
+    
+        Vue.prototype['$' + name] = notify;
+        Vue[name] = notify;
   },
   computed: {
     styles: function () {
